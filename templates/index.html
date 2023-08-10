@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>File Processing App</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>File Processing App</h1>
+        <form method="post" action="/process_file">
+            <label for="directory">Directory:</label>
+            <input type="text" id="directory" name="directory" required>
+
+            <label for="character_chain">Filename Part:</label>
+            <input type="text" id="character_chain" name="character_chain" required>
+
+            <label for="columns_input">Columns (comma-separated):</label>
+            <input type="text" id="columns_input" name="columns_input" required>
+
+            <label for="date_input">Date Filter:</label>
+            <input type="text" id="date_input" name="date_input">
+
+            <label for="delimiter">Delimiter:</label>
+            <input type="text" id="delimiter" name="delimiter" value=";">
+
+            
+            <label for="table_name">Table Name:</label>
+            <input type="text" id="table_name" name="table_name" required>
+
+            <input type="submit" value="Process File">
+        </form>
+
+        {% if tsql_insert %}
+        <div class="generated-tsql">
+            <h2>Generated T-SQL INSERT Statement:</h2>
+            <pre>{{ tsql_insert }}</pre>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
